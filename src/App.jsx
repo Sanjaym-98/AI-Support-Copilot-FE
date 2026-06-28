@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SignIn from "./components/auth/SignIn";
 import Support from "./components/shared/Support";
 import ProtectedRoute from "./components/shared/ProtectedRoute";
-import TicketDetails from "./components/ticket/ticketDetails";
+import TicketDetails from "./components/ticket/TicketDetails";
 import { Toaster } from 'react-hot-toast';
 import PublicRoute from "./components/shared/PublicRoute";
 import SignUp from "./components/auth/SignUp";
