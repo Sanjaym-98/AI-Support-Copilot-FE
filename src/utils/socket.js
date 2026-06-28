@@ -1,14 +1,19 @@
 import io from 'socket.io-client'
 
-export const createSocketConnection= ()=>{
-    try{
-        if (location.hostname === "localhost") {
-            return io('http://localhost:3001/')
-        }else {
-            return io('/',{path:"api/socket.io"})
-        }
-    }catch(err){
-        console.log("err",err)
-        return err.message
-    }
-}
+export const createSocketConnection = () => {
+  try {
+    // Use environment variable for Socket.IO URL
+    const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:3001';
+
+    console.log('🔵 Connecting to Socket.IO:', SOCKET_URL);
+
+    return io(SOCKET_URL, {
+      path: '/socket.io',
+      transports: ['websocket', 'polling'],
+      withCredentials: true,
+    });
+  } catch (err) {
+    console.log('Socket connection error:', err);
+    return null;
+  }
+};
