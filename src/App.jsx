@@ -10,6 +10,7 @@ import SignUp from "./components/auth/SignUp";
 
 
 
+
 function App() {
   const appRouter = createBrowserRouter([
     {
