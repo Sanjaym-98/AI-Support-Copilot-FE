@@ -139,7 +139,7 @@ export const getMessages = async (ticketId) => {
 
 export const processRefund = async (ticketId, reason) => {
     try {
-        const response = await api.post('v1/payment/refund', { ticketId, reason });
+        const response = await api.post('/v1/payment/refund', { ticketId, reason });
         return response.data;
     } catch (error) {
         return {
@@ -152,7 +152,7 @@ export const processRefund = async (ticketId, reason) => {
 
 export const getSummary = async (ticketId) => {
   try {
-    let response = await api.get(`v1/ai/getSummary/${ticketId}`);
+    let response = await api.get(`/v1/ai/getSummary/${ticketId}`);
     return response.data;
   } catch (err) {
     return {
@@ -165,7 +165,7 @@ export const getSummary = async (ticketId) => {
 export const fetchUploadedDocs=async() => {
 
   try {
-    const response = await api.get("v1/ai/getUploadedDocs");
+    const response = await api.get('/v1/ai/getUploadedDocs');
     return response.data;
   } catch (err) {
     return {
