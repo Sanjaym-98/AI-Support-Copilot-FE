@@ -74,12 +74,16 @@ export const getStatusWorkflow = async () => {
 
 export const updateTicketStatus = async (ticketId, statusId) => {
   try {
-    const response = await api.patch('/v1/ticket/status',{},{params: {statusId,ticketId}});
+    const response = await api.patch('/v1/ticket/status', {}, {
+      params: { statusId: Number(statusId), ticketId: Number(ticketId) },
+    });
     return { success: true, data: response?.data };
   } catch (err) {
+    const isNetworkError = !err.response && err.message;
     return {
       success: false,
-      message: err.response?.data?.message || 'Failed to update status',
+      message: err.response?.data?.message
+        || (isNetworkError ? `Network error: ${err.message}. The server may be waking up — try again.` : 'Failed to update status'),
     };
   }
 };
